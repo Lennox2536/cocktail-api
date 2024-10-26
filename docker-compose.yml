@@ -1,0 +1,27 @@
+services:
+  cocktail_api_postgres:
+    container_name: cocktail_api_postgres
+    image: postgres:16-alpine
+    restart: always
+    volumes:
+      - cocktail_api_postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: cocktail_api
+    ports:
+      - 8081:5432
+
+  cocktail_api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: cocktail_api
+    depends_on:
+      - cocktail_api_postgres
+    ports:
+      - 8080:3333
+    env_file:
+      - .env
+volumes:
+  cocktail_api_postgres_data:
