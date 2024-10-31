@@ -18,6 +18,13 @@ $ docker exec cocktail_api node ace create:admin-user
 
 You can access the app at `localhost:8080`
 
+# Documentation
+
+See `doc/openapi.yaml`
+
+## DB Schema
+![alt text](doc/erd.png)
+
 # Testing
 
 For testing purposes we need to have postgres instance to use and `.env` file set up properly.
