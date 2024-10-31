@@ -1,5 +1,8 @@
 erDiagram
     COCTAIL ||--o{ COCTAIL-INGREDIENT: ""
+    COCTAIL ||--o{ LINE-ITEM: ""
+    ORDER ||--o{ LINE-ITEM: ""
+    ORDER }o--|| USER : ""
     COCTAIL-INGREDIENT }o--|| INGREDIENT: ""
 
     COCTAIL {
@@ -19,4 +22,20 @@ erDiagram
         string description
         boolean alcohol "NOT NULL"
         string image_url
+    }
+    ORDER {
+        integer id PK
+        integer customer_id FK
+        date order_date "NOT NULL"
+    }
+    LINE-ITEM {
+        bigint cocktail_id PK, FK
+        bigint order_id PK, FK
+        int quantity "NOT NULL"
+    }
+    USER {
+        bigint id PK
+        string email UK "NOT NULL"
+        string full_name
+        string password "NOT NULL, encrypted"
     }
